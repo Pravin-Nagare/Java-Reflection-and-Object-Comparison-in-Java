@@ -59,8 +59,8 @@
     </target>
 
 <target name="tarzip" > 
-	    <delete file="./nagare_pravin_assign5.tar" quiet="true" />
-	    <tar destfile="${BUILD}/dist/nagare_pravin_assign4.tar.gz" basedir="../../" compression="gzip"/>
+	    <delete file="./nagare_pravin.tar" quiet="true" />
+	    <tar destfile="${BUILD}/dist/nagare_pravin.tar.gz" basedir="../../" compression="gzip"/>
 </target>
 
 </project>
