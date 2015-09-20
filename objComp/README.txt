@@ -1,114 +1,61 @@
-CS542 Design Patterns
-Spring 2015
-PROJECT <5> README FILE
-
-Due Date: <Monday, May 4, 2015>
-Submission Date: <May 5, 2015>
-Grace Period Used This Project: <0> Days
-Grace Period Remaining: <0> Days
-Author(s): <Nagare Pravin> 
-e-mail(s): <pnagare1@binghamton.edu> 
-
-PURPOSE:
-[
-  Learn and implement reflection. Also, understand hashCode and equals method and override them.
-]
-
-PERCENT COMPLETE:
-[
-  100%
-]
-
-PARTS THAT ARE NOT COMPLETE:
-[
-	Everything is completed according to requirements. 
-]
-
-BUGS:
-
-[
-  None
-]
-
-FILES:
-
-[
-
-Included with this project are 6 class files:
-Class files-
-Driver.java: 	Contains main function to drive the program.
-FileProcessor.java: 	The file to read from an input file and write to an output file
-Logger.java: 	File to print message according to the debug value.
-First.java:	 the file to set IntValue and StringValue.
-Second.Java:	 the file to set IntVaue and Double Value
-PopulateObjects.java:	 The file containing Data Struct Map and performing operations to count duplicate and uniq objects.
-
-README.txt
-]
-
-SAMPLE OUTPUT:
-
-[
-Pravins-Mac:objComp pravin$ ant -buildfile src/build.xml run -Darg0=inputbig.txt -Darg1=1 -Darg2=0
-Buildfile: /Users/pravin/Documents/workspace/objComp/src/build.xml
-
-jar:
-    [mkdir] Created dir: /Users/pravin/Documents/workspace/objComp/BUILD/jar
-      [jar] Building jar: /Users/pravin/Documents/workspace/objComp/BUILD/jar/objComp.jar
-
-run:
-     [java] Number of non-duplidate First objects: 237
-     [java] Total Number of First objects: 474
-     [java] Number of non-duplidate Second objects: 263
-     [java] Total Number of Second objects: 526
-     [java] Total time: 0.126 seconds
-
-BUILD SUCCESSFUL
-Total time: 0 seconds
-]
-
-TO COMPILE:
-
-[
-  ant -buildfile src/build.xml all
-]
-
-TO RUN:
-
-[
-  ant -buildfile src/build.xml run -Darg0=input.txt -Darg1=output.txt -Darg2=1 -Darg3=1
-
-
-]
-EXTRA CREDIT:
-
-[
-  HashMap Data Structure: I used 2 hasMap to store the objects of First and Second and 
-  integer counter as value. This is appropriate data structure for this assignment as the insertion
-  and deletion operation can be performed in big-o 1 operation. Also, total number of duplicates and 
-  non-duplicates objects can be found in big-o of n where n, is the total number of unique arguments of
-  of First and Second. 
-
-  Project running successfully on eclipse as well as using ANT. 
-  DEBUG_VALUE=0 [Print to stdout the number of non-duplicate and total instances of First and Second]			
-  DEBUG_VALUE=1 [Print to stdout every time a constructor is called] 
-  DEBUG_VALUE=2 [Print to stdout every time a method other than constructor is called] 
-
-]
-
-BIBLIOGRAPHY:
-
-[
-
-Class Notes.
-http://docs.oracle.com/javase/7/docs/api/java/util/HashMap.html
-
-]
-
-ACKNOWLEDGEMENT:
-[
-
-Prof. Madhusudhan Govindaraju
-cs542.cs.binghamton.edu mailing list
-
-]
+Project Description
+Java Reflection and Object Comparison in Java
+Project requirements:
+Design a Java class, First, in the following way:
+2 private data members int IntValue;
+String StringValue; empty constructor
+define the public method void setIntValue(int iIn) {... }
+define the public method void setStringValue(String sIn) {... } Design a Java class, Second, in the following way:
+2 private data members double DoubleValue;
+int IntValue; empty constructor
+define the public method void setIntValue(int iIn) {... }
+define the public method void setDoubleValue(double dIn) {... }
+Define a class PopulateObjects that has data structures (as data members) to store instances of First and Second. Choose the data structure(s) that are efficient to determine the total number of non-duplicate object instances, and the total number of object instances (includes duplicates).
+PopulateObjects should have a method deserObjects(...) to read data member values from an inputFile and accordingly create instances of First and Second. Decide the appropriate return value and parameters for the method deserObjects
+￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼http://www.cs.binghamton.edu/~mgovinda/courses/cs542-Spring-2015/assignments/assign5/assign5.html 1/4
+￼7/28/2015
+Design Patterns: Assignment 5
+In PopulateObjects First and Second, override equals and hashCode, with annotation, appropriately. You can design additional methods in PopulateObjects as needed.
+The class FileProcessor should be used to read one line at a time from the file.
+The input file will have data in the following format:
+fqn:objComp.util.First
+type=int, var=IntValue, value=17 type=String, var=StringValue, value=abc fqn:objComp.util.Second
+type=int, var=IntValue, value=19 type=double, var=DoubleValue, value=3.14 fqn:objComp.util.Second
+type=double, var=DoubleValue, value=4.13 type=int, var=IntValue, value=21 fqn:objComp.util.Second
+type=int, var=IntValue, value=21 type=double, var=DoubleValue, value=3.14 fqn:objComp.util.First
+type=int, var=IntValue, value=17 type=String, var=StringValue, value=abc fqn:objComp.util.First
+type=int, var=IntValue, value=19 type=String, var=StringValue, value=def ...
+Here is a link to sample input files.
+Use java reflection ( newInstance method) to create an object using the value given for fqn. Please note that fqn is an abbreviation for Fully Quallified Class Name.
+Here is an example of Java reflection code to create an object from given fqn value. This code then shows how to invoke a method.
+￼￼￼￼￼￼￼￼￼String clsName = "objComp.util.First"; Class cls = Class.forName(clsName); Class[] signature = new Class[1]; signature[0] = Integer.TYPE;
+String methdName = "set" + "IntValue";
+Method meth = cls.getMethod(methodName, signature); Object obj = cls.newInstance();
+Object[] params = new Object[1];
+params[0] = new Integer(17);
+Object result = meth.invoke(obj, params);
+// generalize
+// generalize // generalize
+// generalize
+Populate the data structures with instances of First and Second.
+Read the following link about boxed primitives, Integer.TYPE, and Integer.class in the context of Java reflection.
+Generalize the above code so it works for both First and Second objects. For example, you need to set signature[0] value by looking up a map that returns "Integer.TYPE" for the key "int".
+Populate the data structure in PopulateObjects class withe instances of First and Second that are read from the file.
+Design and implement methods in the PopulateObjects class to return the number of non-duplicate instances of First and Second.
+Design and implement methods in the PopulateObjects class to return the total number of instances of First and Second.
+The Driver code should call the PopulateObjects class to populate the data structures and print output on the number of objects.
+Report the performance of your code:
+long startTime = System.currentTimeMillis();
+Start of loop NUM_ITERATIONS times
+// All the code in Driver, except the final 3 lines shown below to print the performance End of loop
+long finishTime = System.currentTimeMillis();
+Calculate total_time as (finishTime-startTime)/NUM_ITERATIONS.
+￼￼￼￼￼￼￼￼￼￼http://www.cs.binghamton.edu/~mgovinda/courses/cs542-Spring-2015/assignments/assign5/assign5.html 2/4
+Design Patterns: Assignment 5
+Write the total_time value to stdout
+So, your final output will be 5 lines:
+Number of non-duplidate First objects: 17 Total Number of First objects: 29
+Number of non-duplidate Second objects: 19 Total Number of Second objects: 31
+Total time: 3 seconds
+The following should be read from command line: input file name, the value of NUM_ITERATIONS, and DEBUG_V ALUE.
+Use the Logger class from the previous assignment along with your own debug scheme. The DEBUG_VALUE=0 should be reserved for just printing the 5 output lines shown above
